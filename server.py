@@ -32,6 +32,7 @@ token_list = [(OTP(Key)[1])]
 # List to track the number of collisions over time
 count = []
 clicks = 0
+duplicate = 0
 soon = False
 
 # Calcalulate 1,000,000 token generations
@@ -40,6 +41,13 @@ for i in range(1000000):
 	token_list.append(OTP(hash_list[i])[1])
 	if i % 10000 == 0:
 		count.append(len(token_list) - len(np.unique(token_list)))
+
+# Determine count of consecutive tokens
+for i in range(1, len(token_list)):
+	if token_list[i-1] == token_list[i]:
+		duplicate += 1
+print("Duplicate consecutive tokens: ", end = "")
+print(duplicate)
 
 # Make a window
 app = QApplication(sys.argv)
