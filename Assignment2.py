@@ -100,22 +100,22 @@ def on_server_click():
 	global server_clicks
 	global client_clicks
 	global soon
+	server_clicks += 1
+	soon = False
 	# Get user inputted  toke
 	user_input = textbox.text()
 	if user_input == None:
 		print(server_clicks)
 		user_input = ""
 	# Is this the correct token
-	if token_list[server_clicks] == user_input:
+	if token_list[server_clicks - 1] == user_input:
 		window.labl.setText("Access Granted")
-		server_clicks += 1
 	# Is it an incorect token?
-	elif token_list[server_clicks] != user_input:
+	elif token_list[client_clicks] != user_input:
 		# Is at least gonna be correct soon?
 		for i in range(server_clicks, server_clicks + 10):
 			if token_list[i] == user_input:
 				window.labl.setText("Please try again")
-				server_clicks += 1
 				soon = True
 				break
 		# Or do we need to synchronize with the client?
