@@ -37,10 +37,10 @@ duplicate = 0
 soon = False
 
 # Calcalulate 1,000,000 token generations
-for i in range(1000):
+for i in range(1000000):
 	hash_list.append(OTP(hash_list[i])[0])
 	token_list.append(OTP(hash_list[i])[1])
-	if i % 10 == 0:
+	if i % 10000 == 0:
 		count.append(len(token_list) - len(np.unique(token_list)))
 
 # Determine count of consecutive tokens
@@ -107,6 +107,10 @@ def on_server_click():
 		user_input = ""
 	# Is this the correct token
 	if token_list[server_clicks] == user_input:
+		window.labl.setText("Access Granted")
+		server_clicks += 1
+	# Rare, but this collision could occur. 
+	if token_list[server_clicks - 1] == user_input:
 		window.labl.setText("Access Granted")
 		server_clicks += 1
 	# Is it an incorect token?
