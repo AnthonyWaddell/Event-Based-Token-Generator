@@ -109,10 +109,6 @@ def on_server_click():
 	if token_list[server_clicks] == user_input:
 		window.labl.setText("Access Granted")
 		server_clicks += 1
-	# Rare, but this collision could occur. 
-	if token_list[server_clicks - 1] == user_input:
-		window.labl.setText("Access Granted")
-		server_clicks += 1
 	# Is it an incorect token?
 	elif token_list[server_clicks] != user_input:
 		# Is at least gonna be correct soon?
